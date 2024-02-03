@@ -2,7 +2,7 @@
 """Script that deploys and distributes archive
 to the remote server"""
 
-from fabric.apt import *
+from fabric.api import *
 import os
 
 env.hosts = ['100.25.111.63', '52.205.93.131']
