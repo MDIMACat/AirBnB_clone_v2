@@ -43,7 +43,7 @@ def number(n):
         abort(404)
 
      
-@app.route('/number_template/<n>')
+@app.route('/number_template/<n>', strict_slashes = False)
 def numTemp(n):
     """ Renders a template if its a whole number
     Args:
