@@ -66,3 +66,7 @@ class FileStorage:
                 self.save()
         else:
             return
+    
+    def close(self):
+        """Deserializing JSON files into objects"""
+        self.reload()
