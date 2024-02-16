@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Generates a Flask web application
+"""
+Generates a Flask web application
 """
 
 from flask import Flask
