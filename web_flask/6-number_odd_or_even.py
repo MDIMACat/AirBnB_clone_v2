@@ -1,49 +1,43 @@
 #!/usr/bin/python3
-"""
-Generates a Flask web application
+"""Generates a Flask web application
 """
 
 from flask import Flask, abort, render_template
+from markupsafe import escape
+
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-
-@app.route('/', strict_slashes = False)
+@app.route('/')
 def greeting():
-    """Greeting method"""
+    """Greeting method
+    """
     return "Hello HBNB!"
 
-
-@app.route('/hbnb', strict_slashes = False)
+@app.route('/hbnb')
 def hbnb():
-    """HBNB METHOD"""
+    """HBNB METHOD
+    """
     return "HBNB"
 
-
-@app.route('/c/<text>', strict_slashes = False)
+@app.route('/c/<text>')
 def c_text(text):
-    """C text method"""
-    return "C " + text.replace('_', ' ')
-
-
-@app.route('/python', strict_slashes = False)
-@app.route('/python/<text>', strict_slashes = False)
-def python_text(text="is cool"):
-    """Python text method"""
-    return 'Python ' + text.replace('_', ' ')
-
-
-@app.route('/number/<n>', strict_slashes = False)
-def number(n):
-    """Route to a whole number
-    Args: n (Integer): a whole number
     """
-    if n.isdigit() == True:
-        return f"{n} is a number" 
-    else:
-        abort(404)
+    C text method
+    """
+    text = text.replace('_', ' ')
+    return f"C {escape(text)}"
 
+@app.route('/python')
+@app.route('/python/<text>')
+def python_text(text="is cool"):
+    """
+    Python text method
+    """
+    text = text.replace('_', ' ')
+    return f"Python {escape(text)}"
 
-@app.route('/number/<n>', strict_slashes = False)
+@app.route('/number/<n>')
 def number(n):
     """Check if n is a digit and the displays it
 
@@ -55,8 +49,7 @@ def number(n):
     else:
         abort(404)
 
-
-@app.route('/number_template/<n>', strict_slashes = False)
+@app.route('/number_template/<n>')
 def numTemp(n):
     """ Renders a template if its a whole number
     Args:
@@ -67,7 +60,7 @@ def numTemp(n):
     else:
         abort(404)
 
-@app.route('/number_odd_or_even/<n>', strict_slashes = False)
+@app.route('/number_odd_or_even/<n>')
 def evenOdd(n):
     """ Renders a template if its an even and odd number
     Args:
