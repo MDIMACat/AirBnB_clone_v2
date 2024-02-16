@@ -38,7 +38,7 @@ def number(n):
     Args: n (Integer): a whole number
     """
     if n.isdigit() == True:
-        return f" {n} is a number" 
+        return f"{n} is a number" 
     else:
         abort(404)
 
