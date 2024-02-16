@@ -1,53 +1,47 @@
 #!/usr/bin/python3
-"""Generates a Flask web application
+"""
+Generates a Flask web application
 """
 
 from flask import Flask, abort, render_template
-from markupsafe import escape
-
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
-@app.route('/')
+
+@app.route('/', strict_slashes = False)
 def greeting():
-    """Greeting method
-    """
+    """Greeting method"""
     return "Hello HBNB!"
 
-@app.route('/hbnb')
+
+@app.route('/hbnb', strict_slashes = False)
 def hbnb():
-    """HBNB METHOD
-    """
+    """HBNB METHOD"""
     return "HBNB"
 
-@app.route('/c/<text>')
+
+@app.route('/c/<text>', strict_slashes = False)
 def c_text(text):
-    """
-    C text method
-    """
-    text = text.replace('_', ' ')
-    return f"C {escape(text)}"
+    """C text method"""
+    return "C " + text.replace('_', ' ')
 
-@app.route('/python')
-@app.route('/python/<text>')
+
+@app.route('/python', strict_slashes = False)
+@app.route('/python/<text>', strict_slashes = False)
 def python_text(text="is cool"):
-    """
-    Python text method
-    """
-    text = text.replace('_', ' ')
-    return f"Python {escape(text)}"
+    """Python text method"""
+    return 'Python ' + text.replace('_', ' ')
 
-@app.route('/number/<n>')
+
+@app.route('/number/<n>', strict_slashes = False)
 def number(n):
-    """Check if n is a digit and the displays it
-
-    Args:
-        n (Integer): a whole number
+    """Route to a whole number
+    Args: n (Integer): a whole number
     """
     if n.isdigit() == True:
-        return f" {n} is a number" 
+        return f"{n} is a number" 
     else:
         abort(404)
+
      
 @app.route('/number_template/<n>')
 def numTemp(n):
